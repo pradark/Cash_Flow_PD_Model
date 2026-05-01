@@ -10,7 +10,7 @@ from reportlab.pdfgen import canvas
 from PIL import Image as PILImage
 import os
 
-BASE = '/Users/pradark/Documents/011. Work/Nova Credit/working_folder'
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 PAGE_W, PAGE_H = A4
 MARGIN = 2.5*cm; BODY_W = PAGE_W - 2*MARGIN
@@ -99,7 +99,7 @@ story=[]
 # COVER
 story+=[sp(3.0),Paragraph("Bank Transaction Default Detection Model",TITLE_STYLE),sp(0.5),
     Paragraph("An Explainable LightGBM Classifier with WoE Feature Engineering",SUBTITLE_STYLE),sp(0.4),
-    Paragraph("Nova Credit Data Science Team   |   April 2026",AUTHOR_STYLE),
+    Paragraph("Data Science Team   |   April 2026",AUTHOR_STYLE),
     sp(1.5),hr(),sp(0.4)]
 story.append(Paragraph("<b>Abstract</b>",SUBSECTION_STYLE))
 story.append(Paragraph(
@@ -121,7 +121,7 @@ story.append(para(
     "detection, fully documented with regard to feature engineering, feature selection, "
     "hyperparameter choices, and performance metrics."))
 story.append(para(
-    "The model follows the methodology of the Nova Credit Restaurant Probability of Default "
+    "The model follows the methodology of the Restaurant Probability of Default "
     "(PD) Model [1], which demonstrated that WoE transformation combined with SHAP-based "
     "feature elimination and LightGBM achieves strong discriminatory power with minimal overfitting."))
 
@@ -332,7 +332,7 @@ story.append(para(
 # REFERENCES
 story.append(section("","References"))
 story+=[
-    para("[1] Nova Credit Data Science Team. Restaurant Probability of Default Model. Technical Report. Nova Credit, 2024."),
+    para("[1] Data Science Team. Restaurant Probability of Default Model. Technical Report, 2024."),
     para("[2] Navas-Palencia, G. optbinning v0.21.0. https://github.com/guillermo-navas-palencia/optbinning, 2024."),
     para("[3] ING Artificial Intelligence. Probatus v3.1.3. https://github.com/ing-bank/probatus, 2024."),
     para("[4] Ke, G. et al. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. NeurIPS 30, 2017."),

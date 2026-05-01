@@ -1,6 +1,6 @@
 # Bank Transaction Default (PD) Model
 
-**Nova Credit | Cash Flow Data Science**
+**Cash Flow Data Science**
 **Date:** April 2026 | **Version:** 1.0
 
 ---
