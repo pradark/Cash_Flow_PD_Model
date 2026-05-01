@@ -1,0 +1,17 @@
+Feature,Type,Null Count,Null %,Unique,Action
+feature_0,Text,0,0.0,3075,Target-encode
+feature_1,Float,0,0.0,2992,Drop (low corr)
+feature_2,Float,0,0.0,5572,Drop (low corr)
+feature_3,Float,4799,80.0,2,Drop (>50% null)
+feature_4,Float,3590,59.8,2,Drop (>50% null)
+feature_5,Int,0,0.0,2,Keep
+feature_6,Int,0,0.0,2,Keep
+feature_7,Int,0,0.0,2,Keep
+feature_8,Object,0,0.0,3,Fix encoding
+feature_9,Int,0,0.0,3,Keep
+feature_10,Int,0,0.0,2,Keep
+feature_11,Int,0,0.0,2,Keep
+feature_12,Float,69,1.2,2,Fill median
+feature_13,Float,0,0.0,3617,Keep
+feature_14,Float,0,0.0,4653,Keep
+label,Int,0,0.0,2,Target

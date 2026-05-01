@@ -1,0 +1,29 @@
+# Large binary model artifacts
+*.pkl
+model_results.pkl
+splits.pkl
+prepared_data.pkl
+bayes_params.pkl
+
+# Raw / sensitive data
+../data/
+enriched_data.csv
+processed_data.csv
+
+# Old/intermediate figures
+model_performance_visualizations.png
+prediction_distributions.png
+fig_woe_pdp.png
+fig1_dataset_split.png
+feature_importance_chart.png
+fig7_threshold.png
+
+# Reports from earlier iteration
+Research_Paper.pdf
+RESEARCH_REPORT.md
+01_DATA_SUMMARY.txt
+
+# Python artifacts
+__pycache__/
+*.pyc
+.DS_Store

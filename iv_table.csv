@@ -1,0 +1,22 @@
+,IV,Strength
+feature_2,5.4233,Suspicious (Leakage?)
+feature_8,3.0577,Suspicious (Leakage?)
+feature_10,2.7437,Suspicious (Leakage?)
+feature_13,1.7085,Suspicious (Leakage?)
+feature_4,1.5161,Suspicious (Leakage?)
+feature_14,1.1669,Suspicious (Leakage?)
+feature_7,0.7355,Very Strong
+feature_3,0.6323,Very Strong
+feature_6,0.3523,Strong
+feature_5,0.3255,Strong
+feature_1,0.2301,Medium
+feature_12,0.1596,Medium
+merchant_category,0.0483,Weak
+feature_11,0.0443,Weak
+txn_channel,0.0116,Useless
+feature_9,0.0101,Useless
+is_international,0.0049,Useless
+is_p2p,0.0041,Useless
+merchant_risk_tier,0.0024,Useless
+txn_direction,0.0018,Useless
+is_recurring,0.0014,Useless

@@ -1,0 +1,11 @@
+Hyperparameter,Value
+n_estimators,500.0
+learning_rate,0.015
+max_depth,4.0
+num_leaves,20.0
+min_child_samples,80.0
+reg_alpha,0.8
+reg_lambda,1.2
+colsample_bytree,0.55
+subsample,0.75
+subsample_freq,1.0

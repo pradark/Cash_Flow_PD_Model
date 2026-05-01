@@ -1,0 +1,6 @@
+Metric,Train,Test
+AUC,0.8392,0.8252
+KS Statistic,0.5321,0.5192
+Precision (class 1),-,0.5526
+Recall (class 1),-,0.1055
+F1 (class 1),-,0.1772
