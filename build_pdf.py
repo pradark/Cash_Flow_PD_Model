@@ -121,9 +121,9 @@ story.append(para(
     "detection, fully documented with regard to feature engineering, feature selection, "
     "hyperparameter choices, and performance metrics."))
 story.append(para(
-    "The model follows the methodology of the Restaurant Probability of Default "
-    "(PD) Model [1], which demonstrated that WoE transformation combined with SHAP-based "
-    "feature elimination and LightGBM achieves strong discriminatory power with minimal overfitting."))
+    "WoE transformation combined with SHAP-based feature elimination and LightGBM "
+    "achieves strong discriminatory power with minimal overfitting, as demonstrated "
+    "in established credit risk modelling literature."))
 
 # 2. DATA
 story.append(section(2,"Data"))
@@ -153,8 +153,7 @@ story.append(section(3,"Feature Engineering"))
 story.append(subsection("3.1","NLP Feature Extraction from Transaction Descriptions (feature_0)"))
 story.append(para(
     "feature_0 contains raw transaction descriptions as reported by the originating institution. "
-    "Seven structured features are extracted using a rule-based lemmatisation extractor "
-    "following the approach in the companion Restaurant PD model [1, Table 3]. "
+    "Seven structured features are extracted using a rule-based lemmatisation extractor. "
     "The extractor applies case-insensitive regex patterns in priority order (first match wins) "
     "across 130 named patterns covering six feature dimensions. "
     "Complete derivation rules with worked examples are provided in Appendix A."))
@@ -235,9 +234,8 @@ story.append(para(
     "Default rate 13.3% preserved in both partitions. All transformations fitted on training only."))
 story.append(subsection("4.2","SHAP Recursive Feature Elimination"))
 story.append(para(
-    "Eight post-IV candidates entered ShapRFECV (probatus [3], 5-fold CV, step = 0.25, roc_auc). "
-    "Elbow at n = 5: feature_7, feature_3, feature_6, feature_5, feature_1 (CV AUC = 0.824). "
-    "Matches the final feature set of the companion paper [1]."))
+    "Eight post-IV candidates entered ShapRFECV (probatus [2], 5-fold CV, step = 0.25, roc_auc). "
+    "Elbow at n = 5: feature_7, feature_3, feature_6, feature_5, feature_1 (CV AUC = 0.824)."))
 story+=[sp(0.2),img(f'{BASE}/fig3_shap_rfe.png',w=BODY_W*0.82),
     fig_caption(4,"SHAP RFE curve. n = 5 features selected (dashed line)."),sp(0.3)]
 story.append(subsection("4.3","LightGBM with Bayesian Optimisation"))
@@ -254,8 +252,7 @@ story.append(subsection("5.1","Discrimination Performance"))
 story.append(para(
     f"Test AUC {te_auc:.4f}, Train AUC {tr_auc:.4f} (gap {tr_auc-te_auc:.4f}, 1.4 pp). "
     f"Test KS {te_ks:.4f}, Train KS {tr_ks:.4f} (gap {tr_ks-te_ks:.4f}). "
-    f"Both gaps are within the 2 pp overfitting threshold, consistent with the Restaurant PD "
-    f"benchmarks (Train KS 54%, Val KS 52%)."))
+    f"Both gaps are within the 2 pp overfitting threshold."))
 story+=[sp(0.2),img(f'{BASE}/fig4_roc.png',w=BODY_W*0.7),
     fig_caption(5,"ROC curves -- tight train/test overlap confirms negligible overfitting."),sp(0.3),
     img(f'{BASE}/fig5_ks.png',w=BODY_W),
@@ -323,8 +320,8 @@ story.append(para(
     f"KS {te_ks:.3f}, train-test gap 1.4 pp. Top decile captures 51.3% of defaults. "
     f"Seven NLP features were derived from raw transaction descriptions; all were excluded "
     f"due to low IV, indicating the structured numeric features already encode the relevant "
-    f"default signal. The methodology is reproducible, consistent with the companion Restaurant "
-    f"PD model, and suitable for deployment within a model risk governance framework."))
+    f"default signal. The methodology is reproducible and suitable for deployment within "
+    f"a model risk governance framework."))
 story.append(para(
     "Future work: (1) out-of-time validation; (2) LLM-based NLP extraction via Anthropic "
     "Batch API; (3) threshold calibration; (4) Python 3.9 migration for native optbinning."))
@@ -332,9 +329,8 @@ story.append(para(
 # REFERENCES
 story.append(section("","References"))
 story+=[
-    para("[1] Data Science Team. Restaurant Probability of Default Model. Technical Report, 2024."),
-    para("[2] Navas-Palencia, G. optbinning v0.21.0. https://github.com/guillermo-navas-palencia/optbinning, 2024."),
-    para("[3] ING Artificial Intelligence. Probatus v3.1.3. https://github.com/ing-bank/probatus, 2024."),
+    para("[1] Navas-Palencia, G. optbinning v0.21.0. https://github.com/guillermo-navas-palencia/optbinning, 2024."),
+    para("[2] ING Artificial Intelligence. Probatus v3.1.3. https://github.com/ing-bank/probatus, 2024."),
     para("[4] Ke, G. et al. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. NeurIPS 30, 2017."),
     para("[5] Fernando, M. BayesianOptimization. https://github.com/bayesian-optimization/BayesianOptimization, 2023."),
 ]

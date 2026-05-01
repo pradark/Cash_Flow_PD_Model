@@ -18,9 +18,15 @@ Gap target: < 2% (anti-overfitting constraint applied during Bayesian optimisati
 
 ---
 
-## Methodology
+## Live Presentation
 
-The pipeline follows the same methodology as the [Restaurant PD Model](https://github.com/pradark/Restaurant-PD-model):
+**[https://pradark.github.io/Cash_Flow_PD_Model/](https://pradark.github.io/Cash_Flow_PD_Model/)**
+
+Interactive 10-slide executive summary — navigate with arrow keys or the dot indicators.
+
+---
+
+## Methodology
 
 1. **NLP Feature Extraction** — Rule-based extractor (130+ regex patterns) derives 7 structured features from free-text transaction descriptions (`feature_0`)
 2. **WoE / IV Analysis** — Custom Weight of Evidence / Information Value implementation. Features with IV >= 1.0 excluded as potential leakage
@@ -116,8 +122,3 @@ jupyter notebook Bank_Transaction_Default_Model.ipynb
 | 9 | 150 | 4 | 2.7% | 2.0% |
 | 10 | 150 | 1 | 0.7% | 0.8% |
 
----
-
-## Related Work
-
-- [Restaurant PD Model](https://github.com/pradark/Restaurant-PD-model) — same methodology applied to restaurant industry default prediction
