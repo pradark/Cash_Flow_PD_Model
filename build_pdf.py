@@ -97,7 +97,7 @@ dec_df=pd.read_csv(f'{BASE}/data/table_decile.csv')
 story=[]
 
 # COVER
-story+=[sp(3.0),Paragraph("Bank Transaction Default Detection Model",TITLE_STYLE),sp(0.5),
+story+=[sp(3.0),Paragraph("Cash Flow PD Model",TITLE_STYLE),sp(0.5),
     Paragraph("An Explainable LightGBM Classifier with WoE Feature Engineering",SUBTITLE_STYLE),sp(0.4),
     Paragraph("Pradeep Arkachar   |   April 2026",AUTHOR_STYLE),
     sp(1.5),hr(),sp(0.4)]
@@ -596,7 +596,7 @@ story.append(para(
 out_path=f'{BASE}/paper/Cash_Flow_PD_Model.pdf'
 doc=SimpleDocTemplate(out_path,pagesize=A4,leftMargin=MARGIN,rightMargin=MARGIN,
                       topMargin=2.0*cm,bottomMargin=2.2*cm,
-                      title='Bank Transaction Default Detection Model')
+                      title='Cash Flow PD Model')
 doc.build(story,canvasmaker=PageNumCanvas)
 
 from pypdf import PdfReader
