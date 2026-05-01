@@ -1,0 +1,28 @@
+# Bank Transaction Default Model — Dependencies
+# Python 3.13 (ARM Mac)
+# Note: optbinning is excluded — incompatible with Python 3.13 / ARM (requires ortools<9.12)
+
+# Core ML
+lightgbm==4.6.0
+scikit-learn==1.7.2
+shap==0.49.1
+probatus==3.1.3
+bayesian-optimization==2.0.4
+
+# Data
+pandas==2.3.3
+numpy==1.26.4
+scipy==1.16.3
+
+# Visualisation
+matplotlib==3.10.9
+seaborn==0.12.2
+
+# Notebook
+ipykernel==6.31.0
+jupyter==1.1.1
+
+# PDF generation (build_pdf.py)
+reportlab==4.5.0
+pypdf==6.10.2
+pdfplumber==0.11.9
