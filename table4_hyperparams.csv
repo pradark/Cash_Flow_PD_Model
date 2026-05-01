@@ -1,0 +1,11 @@
+Parameter,Value,Description
+n_estimators,500.0,Number of boosting rounds
+learning_rate,0.015,Step size shrinkage
+max_depth,4.0,Maximum tree depth
+num_leaves,20.0,Maximum leaves per tree
+min_child_samples,80.0,Minimum samples per leaf
+reg_alpha,0.8,L1 regularisation coefficient
+reg_lambda,1.2,L2 regularisation coefficient
+colsample_bytree,0.55,Feature fraction per tree
+subsample,0.75,Row fraction per tree
+subsample_freq,1.0,Subsampling frequency

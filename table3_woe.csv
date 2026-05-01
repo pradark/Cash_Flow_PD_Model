@@ -1,0 +1,17 @@
+Category,count,events,Anomaly Rate (%),WoE
+ATM,5,2,40.0,1.4673
+Travel,3,1,33.3,1.1792
+Transit,8,2,25.0,0.7748
+Healthcare,47,10,21.3,0.5653
+Restaurant,85,18,21.2,0.5594
+Grocery,34,6,17.6,0.3332
+FoodDelivery,111,18,16.2,0.2315
+Bank,322,50,15.5,0.1799
+Transfer_P2P,581,83,14.3,0.082
+Rideshare,136,18,13.2,-0.0066
+Retail,263,34,12.9,-0.0336
+Payroll,990,126,12.7,-0.0516
+Other,1688,208,12.3,-0.0885
+Subscription,174,19,10.9,-0.2253
+Transfer_ACH,44,4,9.1,-0.4288
+Entertainment,9,0,0.0,-7.7442
