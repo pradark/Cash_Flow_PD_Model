@@ -247,7 +247,7 @@
             <div class="card red"><div class="card-label">Defaults</div><div class="card-value">799</div><div class="card-sub">13.3%</div></div>
           </div>
           <div class="fig-box">
-            <img src="fig2_eda.png" alt="EDA Overview">
+            <img src="figures/fig2_eda.png" alt="EDA Overview">
             <div class="fig-cap">Fig 1 — Target distribution, feature distributions, missing rates</div>
           </div>
         </div>
@@ -338,11 +338,11 @@
         </div>
         <div>
           <div class="fig-box">
-            <img src="fig2_iv_chart.png" alt="IV Chart">
+            <img src="figures/fig2_iv_chart.png" alt="IV Chart">
             <div class="fig-cap">Fig 2 — Information Value by feature (sorted descending)</div>
           </div>
           <div class="fig-box" style="margin-top:16px;">
-            <img src="fig_woe_pdp_a.png" alt="WoE PDP">
+            <img src="figures/fig_woe_pdp_a.png" alt="WoE PDP">
             <div class="fig-cap">Fig 3 — WoE Partial Dependence Plots (feature_7, feature_3, feature_6)</div>
           </div>
         </div>
@@ -361,7 +361,7 @@
         <div>
           <div class="highlight"><p><strong>probatus ShapRFECV</strong> iteratively removes the least important features (step=0.25) using SHAP values, evaluated by 5-fold CV ROC AUC. The <strong>elbow at n=5 features</strong> gives CV AUC 0.8239 — dropping any further hurts performance significantly.</p></div>
           <div class="fig-box">
-            <img src="fig3_shap_rfe.png" alt="SHAP RFE">
+            <img src="figures/fig3_shap_rfe.png" alt="SHAP RFE">
             <div class="fig-cap">Fig 4 — CV AUC vs number of features (elbow at n=5)</div>
           </div>
         </div>
@@ -430,7 +430,7 @@
             <div class="card green"><div class="card-label">KS Gap</div><div class="card-value">1.29%</div><div class="card-sub">Target &lt;2% ✓</div></div>
           </div>
           <div class="fig-box">
-            <img src="fig4_roc.png" alt="ROC Curve">
+            <img src="figures/fig4_roc.png" alt="ROC Curve">
             <div class="fig-cap">Fig 5 — ROC curve (train vs test)</div>
           </div>
         </div>
@@ -449,11 +449,11 @@
         <div>
           <div class="highlight"><p>SHAP (SHapley Additive exPlanations) assigns each feature a contribution to each prediction. Higher SHAP values push the score towards default (1); lower values push towards non-default (0).</p></div>
           <div class="fig-box" style="margin-bottom:16px">
-            <img src="fig7_shap.png" alt="SHAP Summary">
+            <img src="figures/fig7_shap.png" alt="SHAP Summary">
             <div class="fig-cap">Fig 6 — SHAP summary plot (test set, n=1,500)</div>
           </div>
           <div class="fig-box">
-            <img src="fig_woe_pdp_b.png" alt="WoE PDP B">
+            <img src="figures/fig_woe_pdp_b.png" alt="WoE PDP B">
             <div class="fig-cap">Fig 7 — WoE PDPs (feature_5, feature_1)</div>
           </div>
         </div>
@@ -503,7 +503,7 @@
         </div>
         <div>
           <div class="fig-box" style="margin-bottom:16px">
-            <img src="fig_decile.png" alt="Decile Chart">
+            <img src="figures/fig_decile.png" alt="Decile Chart">
             <div class="fig-cap">Fig 8 — Decile expected vs actual default rate (test set)</div>
           </div>
           <div class="card-row">

@@ -77,20 +77,26 @@ Selected by SHAP RFE (CV AUC 0.8239 at n=5, elbow point):
 ## Repository Contents
 
 ```
-Bank_Transaction_Default_Model.ipynb   # Main analysis notebook (54 cells)
-Research_Paper_v2.pdf                  # Full research paper (18 pages)
-build_pdf.py                           # ReportLab PDF generation script
-iv_table.csv                           # IV rankings for all 21 features
-table_decile.csv                       # Decile-level expected vs actual
-fig_woe_pdp_a.png                      # WoE PDP plots (features 1-3)
-fig_woe_pdp_b.png                      # WoE PDP plots (features 4-5)
-fig_decile.png                         # Decile expected vs actual chart
-fig3_shap_rfe.png                      # SHAP RFE elbow curve
-fig4_roc.png                           # ROC curve (train vs test)
-fig5_ks.png                            # KS statistic plot
-fig6_confusion.png                     # Confusion matrix
-fig7_shap.png                          # SHAP summary plot
-fig2_eda.png                           # EDA overview
+index.html                             # Live executive presentation (GitHub Pages)
+README.md
+notebook/
+└── Bank_Transaction_Default_Model.ipynb   # Main analysis notebook (54 cells)
+paper/
+└── Research_Paper_v2.pdf                  # Full research paper (18 pages)
+figures/
+├── fig2_eda.png                           # EDA overview
+├── fig2_iv_chart.png                      # IV bar chart
+├── fig3_shap_rfe.png                      # SHAP RFE elbow curve
+├── fig4_roc.png                           # ROC curve (train vs test)
+├── fig5_ks.png                            # KS statistic plot
+├── fig6_confusion.png                     # Confusion matrix
+├── fig7_shap.png                          # SHAP summary plot
+├── fig_decile.png                         # Decile expected vs actual chart
+├── fig_woe_pdp_a.png                      # WoE PDP plots (features 1-3)
+└── fig_woe_pdp_b.png                      # WoE PDP plots (features 4-5)
+data/
+├── iv_table.csv                           # IV rankings for all 21 features
+└── table_decile.csv                       # Decile-level expected vs actual
 ```
 
 ---
