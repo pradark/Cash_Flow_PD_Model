@@ -593,7 +593,7 @@ story.append(para(
     "numeric features."))
 
 # BUILD
-out_path=f'{BASE}/Research_Paper_v2.pdf'
+out_path=f'{BASE}/paper/Cash_Flow_PD_Model.pdf'
 doc=SimpleDocTemplate(out_path,pagesize=A4,leftMargin=MARGIN,rightMargin=MARGIN,
                       topMargin=2.0*cm,bottomMargin=2.2*cm,
                       title='Bank Transaction Default Detection Model')
