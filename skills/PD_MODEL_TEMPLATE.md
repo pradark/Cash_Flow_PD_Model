@@ -8,9 +8,9 @@
 
 ```
 DATA_PATH        = path/to/your_dataset.csv
-TARGET_COL       = label                     # binary: 1=default, 0=non-default
-TEXT_COL         = feature_0                 # free-text description column; set to None if absent
-OUTPUT_DIR       = ./                        # where to save models, figures, tables
+TARGET_COL       = label          # binary: 1=default/event, 0=non-default/non-event
+TEXT_COLS        = []             # list of free-text columns to extract NLP features from; [] if none
+OUTPUT_DIR       = ./             # where to save models, figures, tables
 AUTHOR           = Your Name
 PROJECT_NAME     = Your_Project_Name
 ```
@@ -26,24 +26,25 @@ You are a credit risk data scientist. Build an end-to-end binary probability of 
 ### Step 1 — Data Profiling
 
 - Load `DATA_PATH`. Print: shape, dtypes, missing value counts per column, and target distribution.
-- Identify and replace sentinel values (e.g. 9,999,997 → NaN).
-- Fix mixed-type columns (e.g. string "0"/"1" mixed with numeric → cast to int).
-- Print the class imbalance ratio (non-defaults : defaults).
+- Identify and replace sentinel values (e.g. 9,999,997 → NaN; "N/A", "unknown" → NaN).
+- Fix mixed-type columns (e.g. string "0"/"1" mixed with numeric → cast to numeric).
+- Print the class imbalance ratio (non-events : events).
 - Flag any column with >20% missing values for review.
+- Classify each column as: Identifier, Numeric, Categorical, Binary, Text, or Date.
 
 ---
 
-### Step 2 — NLP Feature Extraction *(skip if TEXT_COL is None)*
+### Step 2 — NLP Feature Extraction *(skip if TEXT_COLS is empty)*
 
-Use `TransactionNLPExtractor` from `skills/nlp_txn_extractor.py`:
+For each column in `TEXT_COLS`, extract structured features using `TransactionNLPExtractor` from `skills/nlp_txn_extractor.py`, or write custom regex rules if the text domain differs from financial transactions:
 
 ```python
 from skills.nlp_txn_extractor import TransactionNLPExtractor
 extractor = TransactionNLPExtractor()
-df = extractor.transform(df, col=TEXT_COL)
+df = extractor.transform(df, col=text_col)
 ```
 
-This adds 7 columns: `merchant_category`, `txn_channel`, `txn_direction`, `is_recurring`, `is_p2p`, `is_international`, `merchant_risk_tier`. Extend patterns via `extra_merchants={}` if needed.
+Extend or replace the default pattern dictionaries via `extra_merchants={}` to match the domain (e.g. social media signals, bureau codes, marketing categories). All extracted features are treated as regular columns in subsequent steps.
 
 ---
 
@@ -55,7 +56,7 @@ X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25,
                                             stratify=y, random_state=42)
 ```
 
-Confirm the default rate is preserved in both splits (within 0.5 pp). Fit all transformers on training data only — never on test.
+Confirm the event rate is preserved in both splits (within 0.5 pp). If a time column is available, use a chronological split instead (earlier dates → train, later → test). Fit all transformers on training data only — never on test.
 
 ---
 
@@ -72,8 +73,8 @@ iv_df, bins = compute_all_iv(df_train, target_col=TARGET_COL,
 ```
 
 - Print IV table sorted descending with strength labels.
-- **Exclude** features with IV > 1.0 (suspected leakage — flag for domain review) and IV < 0.02 (useless).
-- Apply WoE encoding: `apply_woe(df_train, bins)`, `apply_woe(df_test, bins)`.
+- **Exclude** features with IV > 1.0 (suspected leakage — flag for domain review) and IV < 0.02 (no signal).
+- Apply WoE encoding to train and test: `apply_woe(df_train, bins)`, `apply_woe(df_test, bins)`.
 - Plot WoE PDPs for surviving features: `plot_all_woe_pdps(bins, selected_features)`.
 - Save `iv_df` as `{OUTPUT_DIR}/data/iv_table.csv`.
 
@@ -92,8 +93,7 @@ shap_rfe.plot()
 selected_features = shap_rfe.get_reduced_features_set(num_features='best')
 ```
 
-- Select features at the elbow (max CV AUC; prefer fewer features when AUC difference < 0.002).
-- Print final feature list.
+Select features at the elbow (max CV AUC; prefer fewer features when the AUC difference is < 0.002). Print the final feature list.
 
 ---
 
@@ -140,6 +140,7 @@ tbl.to_csv(f'{OUTPUT_DIR}/data/table_decile.csv', index=False)
 ```
 
 Also plot SHAP summary:
+
 ```python
 import shap
 explainer = shap.TreeExplainer(model.model_)
@@ -178,7 +179,7 @@ with open(f'{OUTPUT_DIR}/final_model.pkl', 'wb') as f:
 PROJECT  : {PROJECT_NAME}
 AUTHOR   : {AUTHOR}
 =====================================
-Dataset  : {n} rows | {n_defaults} defaults ({pct:.1f}%) | ratio {ratio:.1f}:1
+Dataset  : {n} rows | {n_events} events ({pct:.1f}%) | ratio {ratio:.1f}:1
 Features : {selected_features}
 -------------------------------------
            AUC       KS
@@ -186,7 +187,7 @@ Train    : {tr_auc:.4f}   {tr_ks:.4f}
 Test     : {te_auc:.4f}   {te_ks:.4f}
 Gap      : {auc_gap:.4f}   {ks_gap:.4f}   {'✓ within 2pp' if auc_gap < 0.02 else '✗ EXCEEDS TARGET'}
 -------------------------------------
-Top decile captures {top_decile_pct:.1f}% of defaults
+Top decile captures {top_decile_pct:.1f}% of events
 =====================================
 ```
 
@@ -197,19 +198,20 @@ Top decile captures {top_decile_pct:.1f}% of defaults
 - Never refit WoE bins or any transformer on test data.
 - IV > 1.0 → flag as suspected leakage; do not auto-exclude without domain review.
 - If imbalance ratio > 10:1, evaluate `scale_pos_weight` in LightGBM.
-- Do not use `optbinning` on Python 3.13+ (ortools conflict). Use `skills/woe_iv.py`.
+- If a time dimension exists, prefer chronological splitting over random splitting.
 - Decision threshold of 0.50 is a starting point — calibrate against a cost matrix for production.
+- Do not use `optbinning` on Python 3.13+ (ortools conflict). Use `skills/woe_iv.py` instead.
 
 ---
 
-## Required Skill Files
+## Skill Files
 
 | File | Purpose |
 |------|---------|
 | `skills/woe_iv.py` | WoE/IV computation, encoding, PDP plots |
 | `skills/model_utils.py` | performance_metrics, plot_auc2, exp_vs_act, plot_decile_chart |
 | `skills/bayes_lgbm.py` | BayesLGBM with anti-overfitting Bayesian optimisation |
-| `skills/nlp_txn_extractor.py` | Rule-based NLP extractor for transaction descriptions |
+| `skills/nlp_txn_extractor.py` | Configurable rule-based NLP feature extractor for text columns |
 
 ## Required Packages
 
