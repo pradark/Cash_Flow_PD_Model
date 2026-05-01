@@ -98,7 +98,7 @@ story=[]
 
 # COVER
 story+=[sp(3.0),Paragraph("Cash Flow PD Model",TITLE_STYLE),sp(0.5),
-    Paragraph("An Explainable LightGBM Classifier with WoE Feature Engineering",SUBTITLE_STYLE),sp(0.4),
+    Paragraph("An End-to-End Probability of Default Model for Bank Transactions",SUBTITLE_STYLE),sp(0.4),
     Paragraph("Pradeep Arkachar   |   April 2026",AUTHOR_STYLE),
     sp(1.5),hr(),sp(0.4)]
 story.append(Paragraph("<b>Abstract</b>",SUBSECTION_STYLE))
