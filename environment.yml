@@ -1,0 +1,28 @@
+# Reproduce the project environment:
+#   conda env create -f environment.yml
+#   conda activate cash_flow_pd
+#
+# ARM Mac (Apple Silicon) note:
+#   After creation, copy libomp so LightGBM loads correctly:
+#   cp /opt/anaconda3/lib/libomp.dylib $CONDA_PREFIX/lib/libomp.dylib
+
+name: cash_flow_pd
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - optbinning==0.21.0
+    - lightgbm==4.6.0
+    - scikit-learn==1.8.0
+    - shap==0.49.1
+    - probatus==3.1.3
+    - bayesian-optimization==3.2.1
+    - pandas==3.0.2
+    - numpy==2.4.4
+    - scipy==1.17.1
+    - matplotlib==3.10.9
+    - seaborn==0.13.2
+    - reportlab>=4.0
+    - pypdf>=4.0
